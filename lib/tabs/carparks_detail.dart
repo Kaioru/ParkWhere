@@ -177,7 +177,7 @@ class _CarparksDetailState extends State<CarparksDetail> {
 
                                   setState(() => {
                                         state.faults.add({
-                                          "id": details["CarParkID"],
+                                          "carpark": details["Development"],
                                           "report": controller.text
                                         })
                                       });
@@ -242,7 +242,7 @@ class _CarparksDetailState extends State<CarparksDetail> {
 
                                   setState(() => {
                                         state.suggestions.add({
-                                          "id": details["CarParkID"],
+                                          "carpark": details["Development"],
                                           "suggestion": controller.text,
                                           "likes": 0
                                         })
