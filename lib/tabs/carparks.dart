@@ -24,7 +24,7 @@ class _CarparksState extends State<Carparks> {
                           navigationBar: CupertinoNavigationBar(
                             middle: Text('Search for carparks'),
                           ),
-                          child: SafeArea(child: CarparksSearch()));
+                          child: CarparksSearch());
                     },
                   ),
                 );

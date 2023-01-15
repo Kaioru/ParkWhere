@@ -10,13 +10,14 @@ class CarparksSearch extends StatefulWidget {
 class _CarparksSearchState extends State<CarparksSearch> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return SafeArea(
+        child: Column(
       children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: CupertinoSearchTextField(),
         )
       ],
-    );
+    ));
   }
 }
