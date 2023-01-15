@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:testing/tabs/carparks_detail.dart';
 import 'package:testing/tabs/carparks_search.dart';
 import 'package:http/http.dart' as http;
 
@@ -64,16 +65,18 @@ class _CarparksState extends State<Carparks> {
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
                   onTap: () {
-                    setState(() {
-                      if (!state.pins.contains(
-                          snapshot.data[index]["CarParkID"].toString())) {
-                        state.pins
-                            .add(snapshot.data[index]["CarParkID"].toString());
-                      } else {
-                        state.pins
-                            .remove(snapshot.data[index]["CarParkID"].toString());
-                      }
-                    });},
+                    Navigator.of(context).push(
+                  CupertinoPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return CupertinoPageScaffold(
+                          navigationBar: CupertinoNavigationBar(
+                            middle: Text(snapshot.data[index]["Development"]),
+                          ),
+                          child: CarparksDetail(state: state, details: snapshot.data[index]));
+                    },
+                  ),
+                ).then((_) => setState(() {}));
+                  },
                   child: Container(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
