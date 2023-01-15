@@ -1,14 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:testing/tabs/carparks_search.dart';
 
+import '../core/app_state.dart';
+
 class Carparks extends StatefulWidget {
-  const Carparks({super.key});
+  final AppState state;
+  const Carparks({super.key, required this.state});
 
   @override
-  State<Carparks> createState() => _CarparksState();
+  State<Carparks> createState() => _CarparksState(state);
 }
 
 class _CarparksState extends State<Carparks> {
+  final AppState state;
+
+  _CarparksState(this.state);
+  
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -24,7 +31,7 @@ class _CarparksState extends State<Carparks> {
                           navigationBar: CupertinoNavigationBar(
                             middle: Text('Search for carparks'),
                           ),
-                          child: CarparksSearch());
+                          child: CarparksSearch(state: state));
                     },
                   ),
                 );

@@ -1,9 +1,7 @@
-import 'package:testing/core/carpark_detail.dart';
-
 class AppState {
-  late List<CarparkDetail> carparks;
+  late List<String> pins;
 
   AppState() {
-    carparks = List.empty(growable: true);
+    pins = List.empty(growable: true);
   }
 }
