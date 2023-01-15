@@ -87,7 +87,7 @@ class _CarparksDetailState extends State<CarparksDetail> {
                     ))
                   ],
                 ),
-                Text(0.toString() + " reported faults!",
+                Text(state.faults.length.toString() + " reported faults!",
                     style: TextStyle(fontSize: 12.0, color: Colors.black)),
               ],
             ),
@@ -125,7 +125,9 @@ class _CarparksDetailState extends State<CarparksDetail> {
                     ))
                   ],
                 ),
-                Text(0.toString() + " current suggestions!",
+                Text(
+                    state.suggestions.length.toString() +
+                        " current suggestions!",
                     style: TextStyle(fontSize: 12.0, color: Colors.black)),
               ],
             ),
@@ -151,13 +153,132 @@ class _CarparksDetailState extends State<CarparksDetail> {
                 CupertinoButton(
                   child: Text("Report"),
                   color: CupertinoColors.destructiveRed,
-                  onPressed: () {},
+                  onPressed: () {
+                    showCupertinoDialog(
+                        context: context,
+                        builder: (ctx) {
+                          TextEditingController controller =
+                              TextEditingController();
+
+                          return CupertinoAlertDialog(
+                            title: Text('Report fault'),
+                            content: CupertinoTextField(
+                              controller: controller,
+                              keyboardType: TextInputType.multiline,
+                              minLines: 8,
+                              maxLines: 8,
+                            ),
+                            actions: [
+                              CupertinoDialogAction(
+                                isDefaultAction: true,
+                                isDestructiveAction: true,
+                                onPressed: () {
+                                  Navigator.pop(ctx);
+
+                                  setState(() => {
+                                        state.faults.add({
+                                          "id": details["CarParkID"],
+                                          "report": controller.text
+                                        })
+                                      });
+
+                                  showCupertinoDialog(
+                                      context: context,
+                                      builder: (ctx2) {
+                                        return CupertinoAlertDialog(
+                                          title: Text("Reported"),
+                                          content: Text(
+                                              "We have submitted your report!"),
+                                          actions: [
+                                            CupertinoDialogAction(
+                                              child: Text("Ok"),
+                                              isDefaultAction: true,
+                                              onPressed: () {
+                                                Navigator.pop(ctx2);
+                                              },
+                                            )
+                                          ],
+                                        );
+                                      });
+                                },
+                                child: const Text('Submit'),
+                              ),
+                              CupertinoDialogAction(
+                                onPressed: () {
+                                  Navigator.pop(ctx);
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                            ],
+                          );
+                        });
+                  },
                 ),
                 Padding(padding: EdgeInsets.all(13)),
                 CupertinoButton(
                   child: Text("Suggest"),
                   color: CupertinoColors.systemPink,
-                  onPressed: () {},
+                  onPressed: () {
+                    showCupertinoDialog(
+                        context: context,
+                        builder: (ctx) {
+                          TextEditingController controller =
+                              TextEditingController();
+
+                          return CupertinoAlertDialog(
+                            title: Text('Suggestion'),
+                            content: CupertinoTextField(
+                              controller: controller,
+                              keyboardType: TextInputType.multiline,
+                              minLines: 8,
+                              maxLines: 8,
+                            ),
+                            actions: [
+                              CupertinoDialogAction(
+                                isDefaultAction: true,
+                                isDestructiveAction: true,
+                                onPressed: () {
+                                  Navigator.pop(ctx);
+
+                                  setState(() => {
+                                        state.suggestions.add({
+                                          "id": details["CarParkID"],
+                                          "suggestion": controller.text,
+                                          "likes": 0
+                                        })
+                                      });
+
+                                  showCupertinoDialog(
+                                      context: context,
+                                      builder: (ctx2) {
+                                        return CupertinoAlertDialog(
+                                          title: Text("Submitted"),
+                                          content: Text(
+                                              "We have submitted your suggestion!"),
+                                          actions: [
+                                            CupertinoDialogAction(
+                                              child: Text("Ok"),
+                                              isDefaultAction: true,
+                                              onPressed: () {
+                                                Navigator.pop(ctx2);
+                                              },
+                                            )
+                                          ],
+                                        );
+                                      });
+                                },
+                                child: const Text('Submit'),
+                              ),
+                              CupertinoDialogAction(
+                                onPressed: () {
+                                  Navigator.pop(ctx);
+                                },
+                                child: const Text('Cancel'),
+                              ),
+                            ],
+                          );
+                        });
+                  },
                 )
               ],
             ))
