@@ -51,7 +51,7 @@ class _CarparksSearchState extends State<CarparksSearch> {
           final response = await http.get(
               Uri.parse(
                   'http://datamall2.mytransport.sg/ltaodataservice/CarParkAvailabilityv2'),
-              headers: {"AccountKey": String.fromEnvironment('DATAMALL_KEY')});
+              headers: {"AccountKey": const String.fromEnvironment('DATAMALL_KEY')});
 
           return jsonDecode(response.body)["value"]
               .where((v) => v["Development"]
