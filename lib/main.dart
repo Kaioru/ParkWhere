@@ -3,6 +3,7 @@ import 'package:testing/core/app_state.dart';
 import 'package:testing/tabs/carparks.dart';
 import 'package:testing/tabs/error.dart';
 import 'package:testing/tabs/faults.dart';
+import 'package:testing/tabs/settings.dart';
 import 'package:testing/tabs/suggestions.dart';
 
 void main() {
@@ -71,6 +72,11 @@ class _ParkWhereState extends State<ParkWhere> {
               return CupertinoTabView(
                 builder: (BuildContext context) => Suggestions(state: state),
                 defaultTitle: 'Suggestions',
+              );
+            case 3:
+              return CupertinoTabView(
+                builder: (BuildContext context) => Settings(state: state),
+                defaultTitle: 'Settings',
               );
           }
           return const Error();
