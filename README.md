@@ -3,8 +3,10 @@
 a very firey and hot carpark app
 
 ## how 2 run?
+### 1. get DataMall API key from LTA
+### 2. run with API Key
 ```
-flutter run
+flutter run --dart-define DATAMALL_KEY=KEYHERE
 ```
 
 ## Platforms
